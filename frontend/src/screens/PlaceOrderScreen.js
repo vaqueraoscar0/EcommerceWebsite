@@ -1,13 +1,19 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Form, Button, Col, Row, ListGroup, Image, Card} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import CheckoutSteps from "../components/CheckoutSteps";
 import {savePaymentMethod} from "../actions/cartActions";
 import Message from "../components/Message";
 import {Link} from "react-router-dom";
+import {createOrder} from "../actions/orderActions";
+import {ORDER_CREATE_RESET} from "../constants/orderConstant";
 
 
-function PaymentScreen({history}){
+function PlaceOrderScreen({history}){
+    const orderCreate = useSelector(state => state.orderCreate)
+    const {order, error, success} = orderCreate
+
+    const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
 
     cart.itemsPrice = cart.cartItems.reduce((acc,item) => acc + item.price * item.qty, 0).toFixed(2)
@@ -15,8 +21,28 @@ function PaymentScreen({history}){
     cart.taxPrice = Number((0.082) * cart.itemsPrice).toFixed(2)
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
 
+    if(!cart.paymentMethod){
+        history.push('/payment')
+    }
+
+    useEffect(() =>{
+        if(success){
+            history.push(`/order/${order._id}`)
+            dispatch({type: ORDER_CREATE_RESET})
+        }
+    }, [success, history])
+
     const placeOrder = () => {
-        console.log('PlaceOrder')
+        dispatch(createOrder({
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod,
+            itemPrice: cart.itemsPrice,
+            shippingPrice: cart.shippingPrice,
+            taxPrice: cart.taxPrice,
+            totalPrice: cart.totalPrice,
+
+        }))
     }
 
     return(
@@ -108,6 +134,10 @@ function PaymentScreen({history}){
                         </ListGroup.Item>
 
                         <ListGroup.Item>
+                            {error && <Message variant={'danger'}>{error}</Message> }
+                        </ListGroup.Item>
+
+                        <ListGroup.Item>
                             <Row>
                                 <Button type={'button'}
                                             className={'btn-block'}
@@ -125,4 +155,4 @@ function PaymentScreen({history}){
     )
 }
 
-export default PaymentScreen
+export default PlaceOrderScreen
