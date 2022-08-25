@@ -47,6 +47,7 @@ def registerUser(request):
         message = {'detail': 'user with this email already exists'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
+
 # Create your views here.
 # @api_view(['GET'])
 # def getRoutes(request):
@@ -70,6 +71,7 @@ def getUserProfile(request):
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
 
+
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def updateUserProfile(request):
@@ -88,10 +90,10 @@ def updateUserProfile(request):
 
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 @permission_classes([IsAdminUser])
 def getUsers(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
-
