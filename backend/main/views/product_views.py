@@ -9,6 +9,7 @@ from ..serializer import ProductSerializer
 
 from rest_framework import status
 
+
 @api_view(['GET'])
 def getProducts(request):
     products = Product.objects.all()
@@ -22,3 +23,54 @@ def getProduct(request, pk):
     serializer = ProductSerializer(product, many=False)
 
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAdminUser])
+def createProduct(request):
+    user = request.user
+
+    product = Product.objects.create(
+        user=user,
+        name='Sample Name',
+        price=0,
+        brand='Sample Brand',
+        countInStock=0,
+        category='Sample Category',
+        description='',
+        rating=0,
+    )
+
+    serializer = ProductSerializer(product, many=False)
+
+    return Response(serializer.data)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAdminUser])
+def updateProduct(request, pk):
+    data = request.data
+    product = Product.objects.get(_id=pk)
+
+    product.name = data['name']
+    product.price = data['price']
+    product.brand = data['brand']
+    product.countInStock = data['countInStock']
+    product.category = data['category']
+    product.description = data['description']
+    product.rating = data['rating']
+
+
+    serializer = ProductSerializer(product, many=False)
+
+    return Response(serializer.data)
+
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])
+def deleteProducts(request, pk):
+    product = Product.objects.get(_id=pk)
+    product.delete()
+
+    return Response("Product Deleted")
