@@ -3,7 +3,10 @@ from ..views import product_views as views
 
 urlpatterns = [
     path('', views.getProducts, name='products'),
+
     path('create/', views.createProduct, name='product-create'),
+    path('upload/', views.updloadImage, name='image-upload'),
+
     path('<str:pk>/', views.getProduct, name='product'),
 
     path('delete/<str:pk>/', views.deleteProducts, name='product-delete'),
