@@ -4,7 +4,7 @@ certifi==2022.12.7
 cffi @ file:///Users/runner/miniforge3/conda-bld/cffi_1671179432479/work
 charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1661170624537/work
 colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1666700638685/work
-conda==23.1.0
+conda==23.3.1
 conda-package-handling @ file:///home/conda/feedstock_root/build_artifacts/conda-package-handling_1669907009957/work
 conda_package_streaming @ file:///home/conda/feedstock_root/build_artifacts/conda-package-streaming_1669733752472/work
 cryptography @ file:///Users/runner/miniforge3/conda-bld/cryptography-split_1675828776259/work
