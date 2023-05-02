@@ -14,16 +14,14 @@ from rest_framework import status
 @api_view(['GET'])
 def getProducts(request):
     query = request.query_params.get('keyword')
-    print(query)
 
     if query == None:
         query = ''
 
-
-    products = Product.objects.filter(name__icontains=query)
+    products = Product.objects.filter(name__icontains=query).order_by('_id')
 
     page = request.query_params.get('page')
-    paginator = Paginator(products,5)
+    paginator = Paginator(products, 5)
 
     try:
         products = paginator.page(page)
@@ -38,8 +36,9 @@ def getProducts(request):
     page = int(page)
 
     serializer = ProductSerializer(products, many=True)
-    #print(serializer.data + 'page' + page + 'pages' + paginator.num_pages)
+    # print(serializer.data + 'page' + page + 'pages' + paginator.num_pages)
     return Response({'products': serializer.data, 'page': page, 'pages': paginator.num_pages})
+
 
 @api_view(['GET'])
 def getTopProducts(requests):
@@ -97,7 +96,6 @@ def updateProduct(request, pk):
     return Response(serializer.data)
 
 
-
 @api_view(['DELETE'])
 @permission_classes([IsAdminUser])
 def deleteProducts(request, pk):
@@ -105,6 +103,7 @@ def deleteProducts(request, pk):
     product.delete()
 
     return Response("Product Deleted")
+
 
 @api_view(['POST'])
 def updloadImage(request):
@@ -117,6 +116,8 @@ def updloadImage(request):
     product.save()
 
     return Response('Image was uploaded')
+
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def createProductReview(request, pk):
@@ -124,20 +125,20 @@ def createProductReview(request, pk):
     product = Product.objects.get(_id=pk)
     data = request.data
 
-    #1 - Review already exist
+    # 1 - Review already exist
     alreadyExists = product.review_set.filter(user=user).exists()
 
     if alreadyExists:
-        content = {'detail' : 'Product already review'}
+        content = {'detail': 'Product already review'}
         return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
-    #2 - No Rating or 0
+    # 2 - No Rating or 0
     elif data['rating'] == 0:
         content = {'detail': 'Product Select Rating'}
         return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
 
-    #3 - Create Review
+    # 3 - Create Review
     else:
         review = Review.objects.create(
             user=user,
@@ -147,7 +148,7 @@ def createProductReview(request, pk):
             comment=data['comment'],
         )
 
-    reviews= product.review_set.all()
+    reviews = product.review_set.all()
     product.numReviews = len(reviews)
 
     total = 0
@@ -158,4 +159,4 @@ def createProductReview(request, pk):
     product.rating = total / len(reviews)
     product.save()
 
-    return Response({'detail' : 'Review Added'})
+    return Response({'detail': 'Review Added'})
