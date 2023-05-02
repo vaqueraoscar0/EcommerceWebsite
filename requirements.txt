@@ -1,35 +1,16 @@
 asgiref==3.6.0
-brotlipy @ file:///Users/runner/miniforge3/conda-bld/brotlipy_1666764778428/work
 certifi==2022.12.7
-cffi @ file:///Users/runner/miniforge3/conda-bld/cffi_1671179432479/work
-charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1661170624537/work
-colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1666700638685/work
 conda==23.1.0
-conda-package-handling @ file:///home/conda/feedstock_root/build_artifacts/conda-package-handling_1669907009957/work
-conda_package_streaming @ file:///home/conda/feedstock_root/build_artifacts/conda-package-streaming_1669733752472/work
-cryptography @ file:///Users/runner/miniforge3/conda-bld/cryptography-split_1675828776259/work
 Django==4.2
 django-cors-headers==3.14.0
 django-environ==0.10.0
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
 gunicorn==20.1.0
-idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1663625384323/work
 Pillow==9.5.0
-pluggy @ file:///home/conda/feedstock_root/build_artifacts/pluggy_1667232663820/work
 psycopg2==2.9.6
-pycosat @ file:///Users/runner/miniforge3/conda-bld/pycosat_1666836597919/work
-pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
 PyJWT==2.6.0
-pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1672659226110/work
-PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1661604839144/work
 pytz==2023.3
-requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1673863902341/work
-ruamel.yaml @ file:///Users/runner/miniforge3/conda-bld/ruamel.yaml_1666827345171/work
-ruamel.yaml.clib @ file:///Users/runner/miniforge3/conda-bld/ruamel.yaml.clib_1670412837369/work
 sqlparse==0.4.3
-toolz @ file:///home/conda/feedstock_root/build_artifacts/toolz_1657485559105/work
-tqdm @ file:///home/conda/feedstock_root/build_artifacts/tqdm_1662214488106/work
-urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1673452138552/work
 whitenoise==6.4.0
 zstandard==0.19.0
