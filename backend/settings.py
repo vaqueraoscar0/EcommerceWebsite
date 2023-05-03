@@ -179,7 +179,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "static/images/")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
     BASE_DIR / "frontend/build/static/"
 ]
 
