@@ -81,7 +81,7 @@ function PlaceOrderScreen({history}){
                                         <ListGroup.Item key={index}>
                                             <Row>
                                                 <Col md={1}>
-                                                    <Image src={item.image} alt={item.name} fluid={true} rounded={true}/>
+                                                    <Image src={"static"+item.image} alt={item.name} fluid={true} rounded={true}/>
                                                 </Col>
                                                 <Col>
                                                     <Link to={`/product/${item.product}`}>{item.name}</Link>

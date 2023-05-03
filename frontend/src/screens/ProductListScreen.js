@@ -7,7 +7,6 @@ import Message from "../components/Message";
 import {listProducts} from "../actions/productActions";
 import {deleteProduct, createProduct} from "../actions/productActions";
 import {PRODUCT_CREATE_RESET} from "../constants/productConstant";
-import paginate from "../components/Paginate";
 import Paginate from "../components/Paginate";
 
 function ProductListScreen({history, match}) {
