@@ -171,17 +171,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "/var/www/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images/')
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/images/")
 
 STATICFILES_DIRS = [
-    BASE_DIR / '/static/',
-    BASE_DIR / 'frontend/build/static'
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static',
+    BASE_DIR / "frontend/build/static/"
 ]
-
 
 CORS_ALLOW_ALL_ORIGINS = True
 
