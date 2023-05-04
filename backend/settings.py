@@ -166,7 +166,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/images/'
+MEDIA_URL = os.getenv("AWS_URL") + '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
@@ -174,7 +174,7 @@ STATICFILES_DIRS = [
 ]
 
 
-MEDIA_ROOT = BASE_DIR / 'static/images'
+# MEDIA_ROOT = BASE_DIR / 'static/images'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 CORS_ALLOW_ALL_ORIGINS = True
