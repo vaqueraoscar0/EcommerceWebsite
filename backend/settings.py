@@ -169,7 +169,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = "/images/"
+MEDIA_URL = "/media/"
+# MEDIA_URL = "/images/"
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
@@ -177,12 +178,15 @@ STATICFILES_DIRS = [
 ]
 
 
-MEDIA_ROOT = BASE_DIR / 'static/images'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# MEDIA_ROOT = BASE_DIR / 'static/images'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-STORAGES = {"staticfiles": {"BACKEND": "storages.backends.s3boto3.S3ManifestStaticStorage"}}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_QUERYSTRING_AUTH = False
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
