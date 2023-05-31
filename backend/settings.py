@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'promozone.herokuapp.com']
-ALLOWED_HOSTS = ['https://promozone.herokuapp.com/#/']
+ALLOWED_HOSTS = ['https://promozone.herokuapp.com/']
 
 # Application definition
 
