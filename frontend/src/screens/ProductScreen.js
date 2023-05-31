@@ -63,7 +63,7 @@ function ProductScreen({match, history}){
                         <div>
                             <Row>
                                 <Col md={6}>
-                                    <Image src={"static" + product.image} alt={product.name} fluid/>
+                                    <Image src={product.image} alt={product.name} fluid/>
                                 </Col>
                                 <Col md={3}>
                                     <ListGroup variant={'flush'}>
